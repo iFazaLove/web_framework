@@ -3,16 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Список книг</title>
+    <title>Все книги</title>
 </head>
 
 <body>
-    <h1>Список книг</h1>
+    <h1>Все книги</h1>
 
     {% if items %}
     <ul>
         {% for book in items %}
-        <li>{{ loop.index }}. {{ book.title }} — {{ book.pages }} стр. (автор: {{ book.author.name }})</li>
+        <li>
+            {{ loop.index }}. {{ book.title }} — {{ book.pages }} стр.
+            (автор: <a href="/authors/{{ book.author.id }}">{{ book.author.name }}</a>)
+        </li>
         {% endfor %}
     </ul>
     {% else %}
@@ -20,6 +23,7 @@
     {% endif %}
 
     <p><a href="/">На главную</a></p>
+
 </body>
 
 </html>
