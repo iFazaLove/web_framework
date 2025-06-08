@@ -1,4 +1,3 @@
-# miniweb/utils/__init__.py
 from .config import load_config_from_args, DEFAULT_CONFIG
 from .cli import main
 

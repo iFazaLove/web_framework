@@ -3,20 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Список элементов</title>
+    <title>Список книг</title>
 </head>
 
 <body>
-    <h1>Список элементов</h1>
+    <h1>Список книг</h1>
 
     {% if items %}
     <ul>
-        {% for item in items %}
-        <li>{{ loop.index }}. {{ item.name }} — количество: {{ item.quantity }}</li>
+        {% for book in items %}
+        <li>{{ loop.index }}. {{ book.title }} — {{ book.pages }} стр. (автор: {{ book.author.name }})</li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>Элементы не найдены.</p>
+    <p>Книг нет.</p>
     {% endif %}
 
     <p><a href="/">На главную</a></p>

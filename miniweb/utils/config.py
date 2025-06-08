@@ -1,5 +1,3 @@
-# web_framework/utils/config.py
-
 import argparse
 from typing import Any, Dict
 
