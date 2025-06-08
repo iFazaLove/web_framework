@@ -21,7 +21,10 @@ def main():
     def index(request):
         if config["TEMPLATES_ENABLED"]:
             return render_template("index.html", {})
-        return "Hello, world! (Шаблонизатор отключен)"
+        return (
+            "Hello, world!<br>"
+            '<a href="/items">List of books</a>'
+        )
 
 
     @app.route("/items")
@@ -29,13 +32,13 @@ def main():
         items = Book.all()
         if config["TEMPLATES_ENABLED"]:
             return render_template("items.html", {"items": items})
-        return "\n".join(str(item) for item in items)
+        return "\n".join(f"{i:>2}. {b}" for i, b in enumerate(items, 1)) or "Книг нет."
 
     def _books_by_author(author):
         aid = author.id
         return [
             b for b in Book.all()
-            if getattr(b.author, "id", b.author) == aid    # работает и с obj, и с int
+            if getattr(b.author, "id", b.author) == aid
         ]
 
     @app.route("/authors/<int:author_id>")

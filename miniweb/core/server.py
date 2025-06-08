@@ -72,6 +72,8 @@ class App:
     async def _write_response(self, writer, response: Response):
         writer.write(f"HTTP/1.1 {response.status} {responses.get(response.status, '')}\r\n".encode())
         for k, v in response.headers.items():
+            if k.lower() == "content-type" and "charset" not in v.lower():
+                v += "; charset=utf-8"
             writer.write(f"{k}: {v}\r\n".encode())
         writer.write(b"\r\n")
         writer.write(response.body)

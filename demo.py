@@ -16,9 +16,12 @@ class Book(Model):
     pages  = IntegerField(default=0)
     author = ForeignKey(Author)
 
+    def __str__(self) -> str:
+        return f"{self.title} — {self.pages} стр. (автор: {self.author.name})"
+
 Model.create_all()
 author_objs: list[Author] = []
-for idx in range(1, 6):           
+for idx in range(1, 6):
     a = Author(name=f"Author #{idx}")
     a.save()
     author_objs.append(a)
